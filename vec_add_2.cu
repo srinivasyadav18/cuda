@@ -9,19 +9,10 @@
 #include <cuda_runtime.h>
 
 __global__ void vector_add_kernel(const int* a, const int* b, int *c, int N){
-    
-    int rows = 128;
-    int cols = 64;
-    int width = 2;
-    int i = threadIdx.x + blockDim.x * blockIdx.x;
-    int j = threadIdx.y + blockDim.y * blockIdx.y;
-    int k = threadIdx.z + blockDim.z * blockIdx.z;
 
-    if (i < rows && j < cols && k < width)
-    {
-        int idx = k *rows *cols + i*cols + j;
-        c[idx] = a[idx] + b[idx];
-    }
+    int idx = threadIdx.x + blockDim.x * blockIdx.x;
+
+    c[idx] = a[idx] + b[idx];
 }
 
 void print_to_file(const char* file_name, const int* a, const int *b, const int *c, int N){
