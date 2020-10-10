@@ -1,6 +1,6 @@
 # cuda programming
 
-All the cuda programms are run on colab.
+All the cuda programs are run on colab.
 
 To use colab to run cuda programs
 
